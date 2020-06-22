@@ -1,0 +1,12 @@
+.inlineForm {
+  display: inline-block;
+  width: 100%;
+}
+
+.col-md-2 .inlineForm {
+  width: calc(100%/3);
+}
+
+.inlineForm button {
+  width: 100%;
+}
