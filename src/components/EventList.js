@@ -1,33 +1,50 @@
 import React from "react";
 import Event from "./Event";
 import NewEventForm from "./NewEventForm";
+import { connect } from 'react-redux';
+import PropTypes from "prop-types";
 
 class EventList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
+    /*this.state = {
       allEvents: []
-    };
+    };*/
   }
 
   handleAddingNewEvent = (request) => {
-    const newEventList = this.state.allEvents.concat(request);
-    this.setState({allEvents: newEventList});
+    const { dispatch } = this.props;
+    const { id, name, counter } = request;
+    const action = {
+      type: 'ADD_EVENT',
+      id: id,
+      name: name,
+      counter: counter
+    }
+    dispatch(action);
   }
 
   handleEventCounter = (request) => {
-    const newEventList = this.state.allEvents;
-    newEventList.forEach(async function(element) {
-      if (element.id === request.event.id) {
-        element.counter += request.counterDelta;
-      }
-    })
-    this.setState({allEvents: newEventList});
+    const { dispatch } = this.props;
+    const { id, name, counter } = request.event;
+    const action = {
+      type: 'ADD_EVENT',
+      id: id,
+      name: name,
+      counter: counter+request.counterDelta
+    }
+    dispatch(action);
   }
 
   handleDeleteEvent = (request) => {
-    const newEventList = this.state.allEvents.filter(e => e.id !== request.event.id);
-    this.setState({allEvents: newEventList});
+    //const newEventList = this.state.allEvents.filter(e => e.id !== request.event.id);
+    //this.setState({allEvents: newEventList});
+    const { dispatch } = this.props;
+    const action = {
+      type: 'DELETE_EVENT',
+      id: request.event.id
+    }
+    dispatch(action);
   }
 
   render(){
@@ -35,7 +52,7 @@ class EventList extends React.Component {
       <React.Fragment>
         <div>
           <NewEventForm onNewEventCreation={this.handleAddingNewEvent} />
-          {this.state.allEvents.map((element, index) =>
+          {this.props.allEvents.map((element, index) =>
             <Event
               name={element.name}
               counter={element.counter}
@@ -52,4 +69,15 @@ class EventList extends React.Component {
   }
 }
 
+EventList.propTypes = {
+  allEvents: PropTypes.object
+};
+
+const mapStateToProps = state => {
+  return {
+    allEvents: state
+  }
+}
+
+EventList = connect(mapStateToProps)(EventList);
 export default EventList;
