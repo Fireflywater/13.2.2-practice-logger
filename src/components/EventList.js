@@ -52,17 +52,18 @@ class EventList extends React.Component {
       <React.Fragment>
         <div>
           <NewEventForm onNewEventCreation={this.handleAddingNewEvent} />
-          {this.props.allEvents.map((element, index) =>
+          {Object.values(this.props.allEvents).map((element, index) =>
             <Event
               name={element.name}
               counter={element.counter}
               key={index}
-              id={element.id} /* Is this appropriate? Bah, it works.*/
+              id={element.id}
 
               onChangeCounter={this.handleEventCounter}
               onDeleteElement={this.handleDeleteEvent}
             />
           )}
+          {console.log(this.props.allEvents)}
         </div>
       </React.Fragment>
     )
