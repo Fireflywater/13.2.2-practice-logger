@@ -21,19 +21,19 @@ function Event(props) {
 
   return (
     <React.Fragment>
-      <div class="row">
-        <div class="col-md-2">
-          <form class="inlineForm" onSubmit={changeCounter}>
+      <div className="row">
+        <div className="col-md-2">
+          <form className="inlineForm" onSubmit={changeCounter}>
             <input
               type='hidden'
               name='counterDelta'
               value={-1} />
             <button type='submit'>-</button>
           </form>
-          <div class="inlineForm text-center">
+          <div className="inlineForm text-center">
             <h4>{props.counter}</h4>
           </div>
-          <form class="inlineForm" onSubmit={changeCounter}>
+          <form className="inlineForm" onSubmit={changeCounter}>
             <input
               type='hidden'
               name='counterDelta'
@@ -41,11 +41,11 @@ function Event(props) {
             <button type='submit'>+</button>
           </form>
         </div>
-        <div class="col-md-9">
+        <div className="col-md-9">
           <h3>{props.name}</h3>
         </div>
-        <div class="col-md-1">
-          <form class="inlineForm" onSubmit={deleteElement}>
+        <div className="col-md-1">
+          <form className="inlineForm" onSubmit={deleteElement}>
             <button type='submit'>D</button>
           </form>
         </div>

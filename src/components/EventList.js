@@ -7,9 +7,6 @@ import PropTypes from "prop-types";
 class EventList extends React.Component {
   constructor(props) {
     super(props);
-    /*this.state = {
-      allEvents: []
-    };*/
   }
 
   handleAddingNewEvent = (request) => {
